@@ -223,14 +223,16 @@ class Status(argparse.Namespace):
             if status.comment.strip():
                 comment += linefeed(comment) + status.comment
 
-            # 'retcode' - Determine retcode
-            # Use 'result' over 'retcode' if result is not None as 'retcode'
-            # reflects last run state, where 'result' is set explicitly
-            if status.result is not None:
-                retcode = not status.result
+            # 'retcode' - Determine retcode based on first failure
+            if status_mode in ['all']:
+                # Use 'result' over 'retcode' if result is not None as
+                # 'retcode' reflects last run state, where 'result' is set
+                # explicitly
+                if status.result is not None:
+                    retcode = retcode or not status.result
 
-            elif status.retcode and status_mode in ['all']:
-                retcode = status.retcode
+                else:
+                    retcode = retcode or status.retcode
 
             if status.result and test_mode:
                 status.result = None
