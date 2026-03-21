@@ -1,3 +1,9 @@
+qubes-mgmt-salt-base (4.3.2-1) unstable; urgency=medium
+
+  * Fix reporting error status for multi-command actions
+
+ -- Marek Marczykowski-Górecki <marmarek@invisiblethingslab.com>  Sat, 21 Mar 2026 02:07:26 +0100
+
 qubes-mgmt-salt-base (4.3.1-1) unstable; urgency=medium
 
   * Use new devices API to list PCI devices
